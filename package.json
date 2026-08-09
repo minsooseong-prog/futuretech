@@ -1,0 +1,13 @@
+{
+  "name": "zolaman-playground",
+  "version": "2.0.0",
+  "private": true,
+  "description": "살아 있는 졸라맨과 193가지 상호작용을 하는 정적 웹사이트",
+  "type": "module",
+  "scripts": {
+    "dev": "npx serve .",
+    "start": "npx serve ."
+  },
+  "keywords": ["stickman", "canvas", "ragdoll", "procedural-animation", "vercel"],
+  "license": "MIT"
+}
