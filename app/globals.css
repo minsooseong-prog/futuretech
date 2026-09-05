@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Light — warm white paper, near-black ink, hairline rules. */
+    --canvas: 252 252 251;
+    --surface: 255 255 255;
+    --elevated: 255 255 255;
+    --ink: 17 17 17;
+    --subtle: 106 106 106;
+    --faint: 150 150 150;
+    --line: 232 231 228;
+    --accent: 17 17 17;
+    --danger: 186 45 45;
+  }
+
+  .dark {
+    /* Dark — not an inversion: warm grey cards on a soft black ground. */
+    --canvas: 14 14 15;
+    --surface: 24 24 26;
+    --elevated: 31 31 34;
+    --ink: 244 244 243;
+    --subtle: 163 163 160;
+    --faint: 120 120 118;
+    --line: 47 47 51;
+    --accent: 244 244 243;
+    --danger: 232 106 106;
+  }
+
+  * {
+    border-color: rgb(var(--line));
+  }
+
+  html {
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: rgb(var(--canvas));
+    color: rgb(var(--ink));
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid rgb(var(--ink));
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  ::selection {
+    background: rgb(var(--ink));
+    color: rgb(var(--canvas));
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-2xl border border-line bg-surface shadow-card;
+  }
+
+  .field {
+    @apply w-full rounded-xl border border-line bg-surface px-3.5 py-2.5 text-[15px] text-ink
+           placeholder:text-faint transition
+           focus:border-ink focus:outline-none focus:ring-1 focus:ring-ink
+           disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .label {
+    @apply mb-1.5 block text-[13px] font-medium text-subtle;
+  }
+
+  .hairline {
+    @apply border-b border-line;
+  }
+}
+
+@layer utilities {
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: rgb(var(--line));
+    border-radius: 999px;
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* The one piece of non-user-triggered motion in the product: the marker stroke
+   on the landing page. Everything else animates only in response to a click. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
