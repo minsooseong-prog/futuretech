@@ -1,3 +1,0 @@
-# A class community site — keep it out of search results.
-User-agent: *
-Disallow: /
