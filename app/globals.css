@@ -1,0 +1,116 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Future Tech 토큰
+  - 라이트: 종이 같은 순백 배경 + 잉크 블랙. 장식 색은 쓰지 않고 농도로만 위계를 표현합니다.
+  - 다크: 단순 반전이 아니라 흑연(graphite) 톤의 표면 위에 종이색 텍스트를 올립니다.
+*/
+:root {
+  --canvas: 255 255 255;
+  --ink: 20 20 20;
+  --muted: 112 112 112;
+  --line: 232 232 230;
+  --card: 255 255 255;
+  --subtle: 246 246 244;
+  --accent: 20 20 20;
+  --accent-fg: 255 255 255;
+  --danger: 196 43 28;
+  color-scheme: light;
+}
+
+.dark {
+  --canvas: 14 14 15;
+  --ink: 236 235 232;
+  --muted: 150 150 154;
+  --line: 44 44 48;
+  --card: 24 24 26;
+  --subtle: 32 32 35;
+  --accent: 236 235 232;
+  --accent-fg: 18 18 19;
+  --danger: 239 104 88;
+  color-scheme: dark;
+}
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    @apply bg-canvas font-sans text-ink antialiased;
+    font-feature-settings: 'ss06';
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-ink/50 ring-offset-2 ring-offset-canvas;
+  }
+  ::selection {
+    @apply bg-ink text-canvas;
+  }
+}
+
+@layer components {
+  .card {
+    @apply rounded-xl border border-line bg-card;
+  }
+  .btn {
+    @apply inline-flex h-10 select-none items-center justify-center gap-2 whitespace-nowrap rounded-lg px-4 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+  .btn-primary {
+    @apply btn bg-accent text-accentfg hover:bg-accent/90;
+  }
+  .btn-secondary {
+    @apply btn border border-line bg-card text-ink hover:bg-subtle;
+  }
+  .btn-ghost {
+    @apply btn text-ink hover:bg-subtle;
+  }
+  .btn-danger {
+    @apply btn bg-danger text-white hover:bg-danger/90;
+  }
+  .btn-sm {
+    @apply h-8 px-3 text-xs;
+  }
+  .icon-btn {
+    @apply inline-flex h-9 w-9 items-center justify-center rounded-lg text-ink transition-colors hover:bg-subtle;
+  }
+  .input {
+    @apply h-10 w-full rounded-lg border border-line bg-card px-3 text-sm text-ink transition-colors placeholder:text-muted/70 hover:border-ink/25 focus:border-ink/50 focus:outline-none focus:ring-2 focus:ring-ink/10;
+  }
+  .textarea {
+    @apply input h-auto min-h-[8rem] resize-y py-2.5 leading-relaxed;
+  }
+  .label {
+    @apply mb-1.5 block text-sm font-medium text-ink;
+  }
+  .hint {
+    @apply mt-1.5 text-xs text-muted;
+  }
+  .page-title {
+    @apply text-[1.75rem] font-semibold leading-tight tracking-[-0.02em];
+  }
+  .section-title {
+    @apply text-base font-semibold tracking-[-0.01em];
+  }
+  .chip {
+    @apply inline-flex h-6 items-center rounded-md border border-line px-2 text-xs font-medium text-muted;
+  }
+  .modal {
+    @apply m-auto w-[min(92vw,30rem)] rounded-2xl border border-line bg-card p-0 text-ink shadow-xl backdrop:bg-black/40 backdrop:backdrop-blur-[2px];
+  }
+  .prose-plain {
+    @apply whitespace-pre-wrap break-words text-[0.95rem] leading-[1.8];
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
